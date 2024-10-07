@@ -4,11 +4,11 @@
 if [ ! -f /var/www/html/app/etc/env.php ]; then
     # Run the Magento setup install command
     bin/magento setup:install \
-    --base-url=http://localhost/magento2ee \
-    --db-host=db-hostname \
-    --db-name=magento \
-    --db-user=magento \
-    --db-password=magento \
+    --base-url=http://y4g8og40wwowgc8ks4gc0g0k.65.21.12.12.sslip.io \
+    --db-host=65.21.12.12:5557 \
+    --db-name=postgres \
+    --db-user=postgres \
+    --db-password=OiioNv0zo0KMM7GKfhjiR9PM1A7QDX8m3wc0sf5jigXlnjhFD3B95KkjYrcvK5ld \
     --admin-firstname=admin \
     --admin-lastname=admin \
     --admin-email=admin@admin.com \
