@@ -1,21 +1,28 @@
-# Set the base image to use PHP and Apache
-FROM php:8.1-apache
+# Set the base image to PHP 8.2 with Apache
+FROM php:8.2-apache
 
 # Install required packages and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     curl \
+    zip \
+    unzip \
+    libzip-dev \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     libxml2-dev \
     libxslt-dev \
-    zip \
-    unzip \
+    libonig-dev \
+    libcurl4-openssl-dev \
+    libicu-dev \
+    libmcrypt-dev \
+    libxslt1-dev \
+    libmagickwand-dev --no-install-recommends \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd \
+    && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install mysqli pdo pdo_mysql \
-    && docker-php-ext-install soap xsl intl bcmath opcache \
+    && docker-php-ext-install soap xsl intl bcmath opcache sockets zip \
     && pecl install xdebug && docker-php-ext-enable xdebug
 
 # Install Composer
@@ -38,7 +45,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
 # Set up Magento application directory
 WORKDIR /var/www/html
 
-# Copy the existing app codebase into the container
+# Copy the existing app codebase into the container (if you have your code in the same directory as Dockerfile)
 COPY . .
 
 # Set permissions for the Magento installation
@@ -47,7 +54,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} + \
     && chmod u+x bin/magento
 
-# Expose ports
+# Expose the Apache port
 EXPOSE 80
 
 # Start Apache in foreground
