@@ -24,10 +24,16 @@ services:
     image: opensearchproject/opensearch:2.9.0
     container_name: opensearch
     environment:
-      discovery.type: single-node
       bootstrap.memory_lock: 'true'
-      OPENSEARCH_JAVA_OPTS: '-Xms512m -Xmx512m'
+      discovery.type: 'single-node'
+      OPENSEARCH_DISCOVERY_TYPE: 'single-node'
+      OPENSEARCH_HTTP_SSL_ENABLED: 'true'
       OPENSEARCH_INITIAL_ADMIN_PASSWORD: '@cyb86hmWP6Hx7'
+      OPENSEARCH_NODE_NAME: 'opensearch-node'
+      OPENSEARCH_PA_PORT: 9600
+      OPENSEARCH_PORT: 9200
+      plugins.security.disabled: 'true'
+      plugins.security.ssl.http.enabled: 'true'
 
     ulimits:
       memlock:
