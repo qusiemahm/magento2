@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: php-apache
+    ports:
+      - "80:80"
+    depends_on:
+      - opensearch
+    environment:
+      DB_HOST: 65.21.12.12:5557
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: OiioNv0zo0KMM7GKfhjiR9PM1A7QDX8m3wc0sf5jigXlnjhFD3B95KkjYrcvK5ld
+      OPENSEARCH_HOST: opensearch
+      OPENSEARCH_PORT: 9200
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-network
+
+  opensearch:
+    image: opensearchproject/opensearch:2.9.0
+    container_name: opensearch
+    environment:
+      discovery.type: single-node
+      bootstrap.memory_lock: 'true'
+      OPENSEARCH_JAVA_OPTS: '-Xms512m -Xmx512m'
+      OPENSEARCH_INITIAL_ADMIN_PASSWORD: '@cyb86hmWP6Hx7'
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    networks:
+      - app-network
+
+volumes:
+  opensearch-data:
+
+networks:
+  app-network:

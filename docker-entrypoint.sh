@@ -19,7 +19,7 @@ if [ ! -f /var/www/html/app/etc/env.php ]; then
     --timezone=America/Chicago \
     --use-rewrites=1 \
     --search-engine=opensearch \
-    --opensearch-host=http://ig0so00g0k0cwkckwk848os4.65.21.12.12.sslip.io \
+    --opensearch-host=http://localhost \
     --opensearch-port=9200 \
     --opensearch-username=admin \
     --opensearch-password=cyb86*hmWP6Hx7 \
