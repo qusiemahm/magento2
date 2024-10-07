@@ -4,7 +4,7 @@
 if [ ! -f /var/www/html/app/etc/env.php ]; then
     # Run the Magento setup install command
     bin/magento setup:install \
-    --base-url=http://y4g8og40wwowgc8ks4gc0g0k.65.21.12.12.sslip.io \
+    --base-url=https://y4g8og40wwowgc8ks4gc0g0k.65.21.12.12.sslip.io \
     --db-host=65.21.12.12:5557 \
     --db-name=postgres \
     --db-user=postgres \
