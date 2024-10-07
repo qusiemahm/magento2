@@ -62,5 +62,11 @@ ENV DB_PASSWORD=OiioNv0zo0KMM7GKfhjiR9PM1A7QDX8m3wc0sf5jigXlnjhFD3B95KkjYrcvK5ld
 # Expose the Apache port
 EXPOSE 80
 
-# Start Apache in foreground
-CMD ["apache2-foreground"]
+# Copy the entrypoint script into the container
+COPY docker-entrypoint.sh /usr/local/bin/
+
+# Make the entrypoint script executable
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Set the entrypoint script
+ENTRYPOINT ["docker-entrypoint.sh"]
