@@ -4,11 +4,11 @@
 if [ ! -f /var/www/html/app/etc/env.php ]; then
     # Run the Magento setup install command
     php -d memory_limit=2G bin/magento setup:install \
-    --base-url=https://y4g8og40wwowgc8ks4gc0g0k.65.21.12.12.sslip.io \
-    --db-host=pk804wcwsssgk00ggkgg4gs4:3306 \
-    --db-name=default \
-    --db-user=root \
-    --db-password=zOAITDJSs6cBmBFQxNDQnRi823TgpGmwpy77O2REWh2AKpOWUrhsFdiQiMZpHd6j \
+    --base-url=https://rooc0cg8coo0s4c8scgko4ss.65.21.12.12.sslip.io \
+    --db-host=mysql \
+    --db-name=magento \
+    --db-user=magento_user \
+    --db-password=magento_password \
     --admin-firstname=admin \
     --admin-lastname=admin \
     --admin-email=admin@admin.com \
@@ -19,7 +19,7 @@ if [ ! -f /var/www/html/app/etc/env.php ]; then
     --timezone=America/Chicago \
     --use-rewrites=1 \
     --search-engine=opensearch \
-    --opensearch-host=http://localhost \
+    --opensearch-host=http://opensearch \
     --opensearch-port=9200 \
     --opensearch-username=admin \
     --opensearch-password=cyb86*hmWP6Hx7 \

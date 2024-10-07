@@ -7,16 +7,32 @@ services:
     ports:
       - "8855:80"
     depends_on:
+      - mysql
       - opensearch
     environment:
-      DB_HOST: 65.21.12.12:5557
-      DB_NAME: postgres
-      DB_USER: postgres
-      DB_PASSWORD: OiioNv0zo0KMM7GKfhjiR9PM1A7QDX8m3wc0sf5jigXlnjhFD3B95KkjYrcvK5ld
+      DB_HOST: mysql
+      DB_NAME: magento
+      DB_USER: root
+      DB_PASSWORD: root_password
       OPENSEARCH_HOST: opensearch
       OPENSEARCH_PORT: 9200
     volumes:
       - .:/var/www/html
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento_user
+      MYSQL_PASSWORD: magento_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - app-network
 
@@ -34,7 +50,6 @@ services:
       OPENSEARCH_PORT: 9200
       plugins.security.disabled: 'true'
       plugins.security.ssl.http.enabled: 'true'
-
     ulimits:
       memlock:
         soft: -1
@@ -49,6 +64,7 @@ services:
 
 volumes:
   opensearch-data:
+  mysql-data:
 
 networks:
   app-network:
