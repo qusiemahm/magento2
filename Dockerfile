@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libcurl4-openssl-dev \
     libicu-dev \
-    libmcrypt-dev \
     libxslt1-dev \
     libmagickwand-dev --no-install-recommends \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -53,6 +52,12 @@ RUN chown -R www-data:www-data /var/www/html \
     && find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} + \
     && find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} + \
     && chmod u+x bin/magento
+
+# Database environment variables (use public database)
+ENV DB_HOST=65.21.12.12:5557
+ENV DB_NAME=postgres
+ENV DB_USER=postgres
+ENV DB_PASSWORD=OiioNv0zo0KMM7GKfhjiR9PM1A7QDX8m3wc0sf5jigXlnjhFD3B95KkjYrcvK5ld
 
 # Expose the Apache port
 EXPOSE 80
