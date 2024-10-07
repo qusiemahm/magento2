@@ -36,6 +36,9 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/pub
 # Update the default apache configuration to point to Magento's public directory
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 
+# Set the ServerName directive globally to suppress the warning
+RUN echo "ServerName https://y4g8og40wwowgc8ks4gc0g0k.65.21.12.12.sslip.io" >> /etc/apache2/apache2.conf
+
 # Install Node.js and npm for frontend dependencies
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs \

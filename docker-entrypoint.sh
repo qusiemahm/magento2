@@ -3,12 +3,12 @@
 # Check if Magento is already installed
 if [ ! -f /var/www/html/app/etc/env.php ]; then
     # Run the Magento setup install command
-    bin/magento setup:install \
+    php -d memory_limit=2G bin/magento setup:install \
     --base-url=https://y4g8og40wwowgc8ks4gc0g0k.65.21.12.12.sslip.io \
-    --db-host=65.21.12.12:5557 \
-    --db-name=postgres \
-    --db-user=postgres \
-    --db-password=OiioNv0zo0KMM7GKfhjiR9PM1A7QDX8m3wc0sf5jigXlnjhFD3B95KkjYrcvK5ld \
+    --db-host=pk804wcwsssgk00ggkgg4gs4:3306 \
+    --db-name=default \
+    --db-user=root \
+    --db-password=zOAITDJSs6cBmBFQxNDQnRi823TgpGmwpy77O2REWh2AKpOWUrhsFdiQiMZpHd6j \
     --admin-firstname=admin \
     --admin-lastname=admin \
     --admin-email=admin@admin.com \
@@ -19,8 +19,10 @@ if [ ! -f /var/www/html/app/etc/env.php ]; then
     --timezone=America/Chicago \
     --use-rewrites=1 \
     --search-engine=opensearch \
-    --opensearch-host=os-host.example.com \
+    --opensearch-host=http://ig0so00g0k0cwkckwk848os4.65.21.12.12.sslip.io \
     --opensearch-port=9200 \
+    --opensearch-username=admin \
+    --opensearch-password=cyb86*hmWP6Hx7 \
     --opensearch-index-prefix=magento2 \
     --opensearch-timeout=15
 fi
